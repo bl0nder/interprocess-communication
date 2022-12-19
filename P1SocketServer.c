@@ -35,7 +35,7 @@ int main() {
     listen(server, 3);
 
     //accept incoming connection
-    socketClient = accept(server, &client, sizeof(struct sockaddr_un));
+    socketClient = accept(server, (const sockaddr*) &client, sizeof(client));
 
     int randomInd = (rand() % (72-0+1)) + 0;
     int ind = randomInd;
