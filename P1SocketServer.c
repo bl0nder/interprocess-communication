@@ -46,15 +46,15 @@ int main() {
 
         for (int i=0; i<5; i++) {
             strcat(str, arr[ind+i]);
-            strcat(str, ind+i);
-            send(client, str, 50, 0);
+            strcat(str, itoa(ind+i));
+            send(socketClient, str, 50, 0);
             printf("[SENT] Index: %d, String: %s\n", ind+i, arr[ind+i]);
         }
 
         char ans[100];
 
         for (int i=0; i<5; i++) {
-            recv(client, ans, 100, 0);
+            recv(socketClient, ans, 100, 0);
         }
         
         ind = atoi(ans)+1;
