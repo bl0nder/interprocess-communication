@@ -35,7 +35,8 @@ int main() {
     listen(socketServer, 3);
 
     //accept incoming connection
-    socketClient = accept(socketServer, (const struct sockaddr*) &client, &sizeof(client));
+    int temp = sizeof(client);
+    socketClient = accept(socketServer, (struct sockaddr*) &client, &temp);
 
     int randomInd = (rand() % (72-0+1)) + 0;
     int ind = randomInd;
@@ -47,7 +48,8 @@ int main() {
         for (int i=0; i<5; i++) {
             strcat(str, arr[ind+i]);
 
-            char num[10] = itoa(ind+i);
+            char num[10];
+            sprintf(num, " %d", ind+i);
             strcat(str, num);
 
             send(socketClient, str, 50, 0);
@@ -58,6 +60,7 @@ int main() {
 
         for (int i=0; i<5; i++) {
             recv(socketClient, ans, 100, 0);
+            printf("[RECV] Index: %s\n", ans);
         }
         
         ind = atoi(ans)+1;
