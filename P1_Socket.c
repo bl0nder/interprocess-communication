@@ -4,7 +4,7 @@
 
 int main() {
     
-    char* chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[];',./"
+    char* chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[];',./";
     char arr[50][5];
 
     for (int i=0; i<50; i++) {
