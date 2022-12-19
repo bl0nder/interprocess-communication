@@ -52,19 +52,22 @@ int main() {
             sprintf(num, " %d", ind+i);
             strcat(str, num);
 
-            send(socketClient, str, 50, 0);
+            write(socketClient, str, 50);
             printf("[SENT] Index: %d, String: %s\n", ind+i, arr[ind+i]);
         }
 
         char ans[100];
 
         for (int i=0; i<5; i++) {
-            recv(socketClient, ans, 100, 0);
+            read(socketClient, ans, 100);
             printf("[RECV] Index: %s\n", ans);
         }
         
         ind = atoi(ans)+1;
     }
+
+    close(socketClient);
+    close(socketServer);
         
     return 0;
 }
