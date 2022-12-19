@@ -1,75 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/un.h>
-#include <sys/types.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 
-int main() {
-    
-    char* chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[];',./";
-    char arr[50][5];
 
-    for (int i=0; i<50; i++) {
-        for (int j=0; j<5; j++) {
-            arr[i][j] = chars[(rand() % (72-0+1)) + 0];
-        }
+
+#define SOCKET_PATH "/tmp/socket"
+#define BUFFER_SIZE 5
+
+int main(int argc, char *argv[]) {
+  // Create the socket
+  int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
+  if (sockfd < 0) {
+    perror("socket");
+    exit(EXIT_FAILURE);
+  }
+
+  // Set up the socket address
+  struct sockaddr_un addr;
+  memset(&addr, 0, sizeof(struct sockaddr_un));
+  addr.sun_family = AF_UNIX;
+  strncpy(addr.sun_path, SOCKET_PATH, sizeof(addr.sun_path) - 1);
+
+  // Bind the socket to the address
+  if (bind(sockfd, (struct sockaddr *) &addr, sizeof(struct sockaddr_un)) < 0) {
+    perror("bind");
+    exit(EXIT_FAILURE);
+  }
+
+  // Listen for incoming connections
+  if (listen(sockfd, 5) < 0) {
+    perror("listen");
+    exit(EXIT_FAILURE);
+  }
+
+  // Accept a connection
+  int clientfd = accept(sockfd, NULL, NULL);
+  if (clientfd < 0) {
+    perror("accept");
+    exit(EXIT_FAILURE);
+  }
+
+  // Generate and send 50 random strings of size 5
+  int i;
+  char buffer[BUFFER_SIZE + 1];
+  for (i = 0; i < 50; i++) {
+    int j;
+    for (j = 0; j < BUFFER_SIZE; j++) {
+      buffer[j] = 'A' + rand() % 26;
     }
+    buffer[BUFFER_SIZE] = '\0';
 
-    //Call socket()
-    int socketServer;
-    int socketClient;
-
-    struct sockaddr_un server;
-    struct sockaddr_un client;
-
-    socketServer = socket(AF_UNIX, SOCK_STREAM, 0);
-
-    //Set struct attributes
-    server.sun_family = AF_UNIX;
-    strcpy(server.sun_path, "OSSocket");
-
-    //bind socket
-    bind(socketServer, (const struct sockaddr*) &server, sizeof(server));
-
-    //listen for messages
-    listen(socketServer, 3);
-
-    //accept incoming connection
-    int temp = sizeof(client);
-    socketClient = accept(socketServer, (struct sockaddr*) &client, &temp);
-
-    int randomInd = (rand() % (72-0+1)) + 0;
-    int ind = randomInd;
-
-
-    while (ind < 50) {
-        char str[50];
-
-        for (int i=0; i<5; i++) {
-            strcat(str, arr[ind+i]);
-
-            char num[10];
-            sprintf(num, " %d", ind+i);
-            strcat(str, num);
-
-            write(socketClient, str, 50);
-            printf("[SENT] Index: %d, String: %s\n", ind+i, arr[ind+i]);
-        }
-
-        char ans[100];
-
-        for (int i=0; i<5; i++) {
-            read(socketClient, ans, 100);
-            printf("[RECV] Index: %s\n", ans);
-        }
-        
-        ind = atoi(ans)+1;
+    if (write(clientfd, buffer, BUFFER_SIZE) < 0) {
+      perror("write");
+      exit(EXIT_FAILURE);
     }
+  }
 
-    close(socketClient);
-    close(socketServer);
-        
-    return 0;
+  // Close the socket
+  close(clientfd);
+  close(sockfd);
+
+  return 0;
 }

@@ -1,45 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/un.h>
-#include <sys/types.h>
 
-int main() {
+#define SOCKET_PATH "/tmp/socket"
+#define BUFFER_SIZE 5
 
-    //Call socket()
-    int socketServer;
-    int socketClient;
+int main(int argc, char *argv[]) {
+  // Create the socket
+  int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
+  if (sockfd < 0) {
+    perror("socket");
+    exit(EXIT_FAILURE);
+  }
 
-    struct sockaddr_un server;
+  // Set up the socket address
+  struct sockaddr_un addr;
+  memset(&addr, 0, sizeof(struct sockaddr_un));
+  addr.sun_family = AF_UNIX;
+  strncpy(addr.sun_path, SOCKET_PATH, sizeof(addr.sun_path) - 1);
 
-    socketServer = socket(AF_UNIX, SOCK_STREAM, 0);
+  // Connect to the server
+  if (connect(sockfd, (struct sockaddr *) &addr, sizeof(struct sockaddr_un)) < 0) {
+    perror("connect");
+    exit(EXIT_FAILURE);
+  }
 
-    //Set struct attributes
-    server.sun_family = AF_UNIX;
-    strcpy(server.sun_path, "OSSocket");
+  // Read and print the strings sent by the server
+  char buffer[BUFFER_SIZE + 1];
+  int bytes_read;
+  while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
+    buffer[bytes_read] = '\0';
+    printf("Received string: %s\n", buffer);
+  }
 
-    //accept incoming connection
-    int temp = sizeof(server);
-    socketClient = connect(socketServer, (struct sockaddr*) &server, temp);
+  // Check for read errors
+  if (bytes_read < 0) {
+    perror("read");
+    exit(EXIT_FAILURE);
+  }
 
-    printf("Connected to server\n");
+  // Close the socket
+  close(sockfd);
 
-    char strings[100];
-    char test[100] = "hello";
-
-    while (fgets(strings, 100, stdin), !feof(stdin)) {
-        if (recv(socketServer, strings, 100, 0) > 0 ) {
-            printf("%s\n", strings);
-        }
-
-        if (send(socketServer, test, 100, 0) == -1) {
-            exit(1);
-        }
-
-        else {
-            exit(1);
-        }
-    }
-        
-    return 0;
+  return 0;
 }
