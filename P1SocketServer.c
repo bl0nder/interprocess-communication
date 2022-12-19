@@ -29,13 +29,13 @@ int main() {
     strcpy(server.sun_path, "OSSocket");
 
     //bind socket
-    bind(socketServer, (const sockaddr*) &server, sizeof(server));
+    bind(socketServer, (const struct sockaddr*) &server, sizeof(server));
 
     //listen for messages
     listen(server, 3);
 
     //accept incoming connection
-    socketClient = accept(server, (const sockaddr*) &client, sizeof(client));
+    socketClient = accept(server, (const struct sockaddr*) &client, sizeof(client));
 
     int randomInd = (rand() % (72-0+1)) + 0;
     int ind = randomInd;
@@ -46,7 +46,10 @@ int main() {
 
         for (int i=0; i<5; i++) {
             strcat(str, arr[ind+i]);
-            strcat(str, itoa(ind+i));
+
+            char num[10] = itoa(ind+i);
+            strcat(str, num);
+            
             send(socketClient, str, 50, 0);
             printf("[SENT] Index: %d, String: %s\n", ind+i, arr[ind+i]);
         }
