@@ -12,7 +12,7 @@ int main() {
             arr[i][j] = chars[(rand() % (72-0+1)) + 0];
             printf("%c", arr[i][j]);
         }
-        printf("\n");
+        printf(" ");
     }
 
 
