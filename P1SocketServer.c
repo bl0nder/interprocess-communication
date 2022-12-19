@@ -32,10 +32,10 @@ int main() {
     bind(socketServer, (const struct sockaddr*) &server, sizeof(server));
 
     //listen for messages
-    listen(server, 3);
+    listen(socketServer, 3);
 
     //accept incoming connection
-    socketClient = accept(server, (const struct sockaddr*) &client, sizeof(client));
+    socketClient = accept(socketServer, (const struct sockaddr*) &client, &sizeof(client));
 
     int randomInd = (rand() % (72-0+1)) + 0;
     int ind = randomInd;
@@ -49,7 +49,7 @@ int main() {
 
             char num[10] = itoa(ind+i);
             strcat(str, num);
-            
+
             send(socketClient, str, 50, 0);
             printf("[SENT] Index: %d, String: %s\n", ind+i, arr[ind+i]);
         }
