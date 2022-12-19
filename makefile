@@ -1,3 +1,3 @@
 all:
-	gcc P1_Socket.c -o P1_Socket
-	./P1_Socket
+	gcc P1SocketServer.c -o P1SocketServer
+	./P1SocketServer
