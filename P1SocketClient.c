@@ -32,11 +32,22 @@ int main(int argc, char *argv[]) {
   // Read and print the strings sent by the server
   char buffer[BUFFER_SIZE + 1];
   int bytes_read;
-  while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
-    buffer[bytes_read] = '\0';
-    printf("Received string: %s\n", buffer);
-    sleep(2);
+
+  printf("Strings: ")
+  for (int i=0; i<5; i++) {
+    if ((bytes_read = read(sockfd, buffer, BUFFER_SIZE) > 0)) {
+      buffer[bytes_read] = '\0';
+      printf("%s ", buffer);
+    }
   }
+
+  printf("\n");
+
+  // while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
+  //   buffer[bytes_read] = '\0';
+  //   printf("Received string: %s\n", buffer);
+  //   sleep(2);
+  // }
 
   // Check for read errors
   if (bytes_read < 0) {
