@@ -47,7 +47,7 @@ int main() {
         exit(1);
       }
 
-      printf("[CLIENT] String: %s, ID: %d\n", recvString, ind);
+      printf("[CLIENT] String: %s, ID: %d\n", recvStr, ind);
     }
 
     if (send(sockfd, &ind, sizeof(int), 0) < 0) {
