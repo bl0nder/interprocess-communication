@@ -61,6 +61,7 @@ int main() {
       char* recvString = (char *) region;
 
       printf("Recvstring: %s\n", recvString);
+      printf("Strlen: %d\n", strlen(recvString));
       // sscanf(region -> toRecv, "%s %d", recvString, &maxInd);
       region += strlen(recvString) + 1;
 
@@ -70,7 +71,7 @@ int main() {
       strcpy(maxIndString, token);
 
       sprintf(region, "%s", maxIndString);
-      // region += strlen(maxIndString)+1;
+      region += strlen(maxIndString)+1;
 
       printf("[CLIENT] String: %s, ID: %d\n", recvString, maxInd);
     }
