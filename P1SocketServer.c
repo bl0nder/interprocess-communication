@@ -130,13 +130,6 @@ int main(int argc, char *argv[]) {
     randInd += 5;
   }
 
-  if (recv(clientfd, &maxInd, sizeof(int), 0) < 0) {
-    perror("Error while trying to read from client socket");
-    exit(1);
-  }
-
-  printf("Client socket sent me this: %d", maxInd);
-
   // Close the socket
   close(clientfd);
   close(sockfd);
