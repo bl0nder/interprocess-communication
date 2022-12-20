@@ -35,6 +35,7 @@ int main(int argc, char *argv[]) {
   memset(&addr, 0, sizeof(struct sockaddr_un));
   addr.sun_family = AF_UNIX;
   strncpy(addr.sun_path, SOCKET_PATH, sizeof(addr.sun_path) - 1);
+  unlink(addr.sun_path);
 
   // Bind the socket to the address
   if (bind(sockfd, (struct sockaddr *) &addr, sizeof(struct sockaddr_un)) < 0) {
