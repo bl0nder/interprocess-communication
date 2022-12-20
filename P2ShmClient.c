@@ -41,7 +41,7 @@ int main() {
 
   char* region = mmap(NULL, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm, 0);
 
-  char recvString[12];
+  // char recvString[12];
 
   int maxInd;
   int startTime = clock_gettime(CLOCK_REALTIME, &start);
@@ -56,7 +56,11 @@ int main() {
     char maxIndString[5];
 
     for (int i=0; i<5; i++) {
-      strcpy(recvString, region);
+      // strcpy(recvString, region);
+
+      char* recvString = (char *) region;
+
+      printf("Recvstring: %s\n", recvString);
       // sscanf(region -> toRecv, "%s %d", recvString, &maxInd);
       region += strlen(recvString) + 1;
 
