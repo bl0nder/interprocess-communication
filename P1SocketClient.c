@@ -33,19 +33,16 @@ int main(int argc, char *argv[]) {
   char buffer[BUFFER_SIZE + 1];
   int bytes_read;
 
-  printf("Strings: ");
-  while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
-    buffer[bytes_read] = '\0';
-    printf("%s ", buffer);
-  }
-
-  printf("\n");
-
   // while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
   //   buffer[bytes_read] = '\0';
-  //   printf("Received string: %s\n", buffer);
-  //   sleep(2);
+  //   printf("%s ", buffer);
   // }
+
+  while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
+    buffer[bytes_read] = '\0';
+    printf("Received string: %s\n", buffer);
+    sleep(2);
+  }
 
   // Check for read errors
   if (bytes_read < 0) {
