@@ -20,7 +20,7 @@ struct memRegion {
 };
 
 int main() {
-    struct memRegion* region;
+  struct memRegion* region;
   struct timespec start;
   struct timespec end;
   
@@ -65,7 +65,7 @@ int main() {
     sleep(2);
   
 
-    printf("[SERVER] Maximum index received: %d\n", maxInd);
+    printf("[CLIENT] String: %s, ID: %d\n", recvString, maxInd);
 
     if (maxInd == 49) {
       break;
