@@ -66,7 +66,7 @@ int main() {
       region += strlen(recvString) + 1;
 
       char* token = strtok(recvString, " ");
-      strtok(NULL, " ");
+      token = strtok(NULL, " ");
 
       strcpy(maxIndString, token);
 
