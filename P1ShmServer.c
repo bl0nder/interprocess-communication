@@ -75,7 +75,7 @@ int main() {
     }
 
     char tempMax[5];
-    sprintf(tempMax, "%d", randInd + 5);
+    sprintf(tempMax, "%d", randInd + 4);
 
     while (strcmp(region, tempMax)) {
       continue;
