@@ -14,6 +14,15 @@
 #define BUFFER_SIZE 5
 
 int main(int argc, char *argv[]) {
+
+  char* chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[];',./";
+  char arr[50][5];
+  for (int i=0; i<50; i++) {
+      for (int j=0; j<5; j++) {
+          arr[i][j] = chars[(rand() % (72-0+1)) + 0];
+      }
+  }
+
   // Create the socket
   int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
   if (sockfd < 0) {
@@ -46,19 +55,32 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  // Generate and send 50 random strings of size 5
-  int i;
-  char buffer[BUFFER_SIZE + 1];
-  for (i = 0; i < 50; i++) {
-    int j;
-    for (j = 0; j < BUFFER_SIZE; j++) {
-      buffer[j] = 'A' + rand() % 26;
-    }
-    buffer[BUFFER_SIZE] = '\0';
+  int randInd = (rand() % (68-0+1)) + 0;
+  char highestInd[10];
+  
+  while(randInd <= 68) {
+    for (int i=randInd; i<randInd+5; i++) {
+      if (write(clientfd, arr[i], 5) < 0) {
+        perror("Error while writing string to client socket");
+        exit(1);
+      }
 
-    if (write(clientfd, buffer, BUFFER_SIZE) < 0) {
-      perror("write");
-      exit(EXIT_FAILURE);
+      char sendInd[8] = itoa(i);
+
+      if (write(clientfd, sendInd, 8) < 0) {
+        perror("Error while writing string index to client socket");
+        exit(1);
+      }
+
+      randInd++;
+
+      if (read(clientfd, highestInd, 10) < 0) {
+        perror("Error while trying to read from client socket");
+        exit(1);
+      }
+
+      printf("Client socket sent me this: %s", highestInd);
+      sleep(2);
     }
   }
 
