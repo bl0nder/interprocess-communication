@@ -61,37 +61,71 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
   
-  while(randInd<= 57) {
-    for (int i=randInd; i<randInd+5; i++) {
+  // while(randInd<= 57) {
+  //   for (int i=randInd; i<randInd+5; i++) {
 
 
-      char sendInd[8];
-      sprintf(sendInd, "%d", i);
+  //     char sendInd[8];
+  //     sprintf(sendInd, "%d", i);
       
-      char toSend[25];
-      strcpy(toSend, "");
-      strcat(toSend, arr[i]);
-      strcat(toSend, "~");
-      strcat(toSend, sendInd);
-      strcat(toSend, "\0");
+  //     char toSend[25];
+  //     strcpy(toSend, "");
+  //     strcat(toSend, arr[i]);
 
-      printf("[SERVER] Sending: %s\n", toSend);
+  //     printf("[SERVER] Sending: %s\n", toSend);
       
-      if (write(clientfd, toSend, 25) < 0) {
-        perror("Error while writing string to client socket");
-        exit(1);
-      }
+  //     if (send(clientfd, toSend, sizeof(toSend) + 1) < 0) {
+  //       perror("Error while writing string to client socket");
+  //       exit(1);
+  //     }
 
       
 
-      // if (write(clientfd, sendInd, 8) < 0) {
-      //   perror("Error while writing string index to client socket");
-      //   exit(1);
-      // }
+  //     // if (write(clientfd, sendInd, 8) < 0) {
+  //     //   perror("Error while writing string index to client socket");
+  //     //   exit(1);
+  //     // }
 
-      randInd++;
-      // sleep(2);
+  //     randInd++;
+  //     // sleep(2);
+  //   }
+  // }
+  int i= randInd;
+  while (1) {
+
+    char toSend[25];
+    strcpy(toSend, "");
+    strcat(toSend, arr[i]);
+
+    int maxInd;
+    
+    printf("[SERVER] Sending %s\n", toSend);
+
+    if (send(clientfd, toSend, sizeof(toSend) + 1, 0) < 0) {
+      perror("Error while writing string to client socket");
+      exit(1);
     }
+
+    printf("[SERVER] Sending %d\n", i);
+
+    if (send(clientfd, &i, sizeof(int), 0) < 0) {
+      perror("Error while sending index to client\n");
+      exit(1);
+    }
+
+
+    if (recv(clientfd, &maxInd, sizeof(int), 0) < 0) {
+      perror("Error while reading index from client\n");
+      exit(1);
+    }
+    
+    printf("[SERVER] Received %d\n", maxInd);
+
+    if (maxInd==61) {
+      break;
+    }
+
+    i++;
   }
 
   if (read(clientfd, highestInd, 10) < 0) {

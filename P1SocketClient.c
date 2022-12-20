@@ -39,23 +39,47 @@ int main(int argc, char *argv[]) {
   
   char highestInd[15];
 
-  while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
-    buffer[bytes_read] = '\0';
-    strcpy(highestInd, buffer);
-    printf("[CLIENT] Received string: %s\n", highestInd);
-    // sleep(2);
-  }
+  // while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
+  //   buffer[bytes_read] = '\0';
+  //   strcpy(highestInd, buffer);
+  //   printf("[CLIENT] Received string: %s\n", highestInd);
+  //   // sleep(2);
+  // }
 
   
-  if (write(sockfd, highestInd, 8) < 0) {
-    perror("Error while trying to write to server\n");
-    exit(1);
-  }
+  // if (write(sockfd, highestInd, 8) < 0) {
+  //   perror("Error while trying to write to server\n");
+  //   exit(1);
+  // }
 
-  // Check for read errors
-  if (bytes_read < 0) {
-    perror("read");
-    exit(EXIT_FAILURE);
+  // // Check for read errors
+  // if (bytes_read < 0) {
+  //   perror("read");
+  //   exit(EXIT_FAILURE);
+  // }
+
+  char recvStr[25];
+  int ind;
+  
+  while (1) {
+
+    for (int i=0; i<5; i++) {
+      if (recv(sockfd, recvStr, sizeof(recvStr) + 1, 0) < 0) {
+        perror("Error in receiving string from server\n");
+        exit(1);
+      }
+
+      if (recv(sockfd, &ind, sizeof(int), 0) < 0) {
+        perror("Error in receiving index from server\n");
+        exit(1);
+      }
+    }
+
+    if (send(sockfd, &ind, sizeof(int), 0) < 0) {
+      perror("Error in sending index to server\n");
+      exit(1);
+    }
+
   }
 
   // Close the socket
