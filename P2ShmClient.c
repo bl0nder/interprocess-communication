@@ -85,9 +85,7 @@ int main() {
     randInd += 5;
 
     sprintf(region, "%s", "nnn");
-    while (!strcmp((char*) region, "nnn")) {
-      continue;
-    }
+    while (!strcmp((char*) region, "nnn"));
   }
 
   int endTime = clock_gettime(CLOCK_REALTIME, &end);
