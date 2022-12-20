@@ -84,8 +84,8 @@ int main() {
 
     randInd += 5;
 
-    sprintf(region, "%s", "x");
-    while (!strcmp((char*) region, "x")) {
+    sprintf(region, "%s", "nnn");
+    while (!strcmp((char*) region, "nnn")) {
       continue;
     }
   }
