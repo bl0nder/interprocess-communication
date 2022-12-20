@@ -70,7 +70,7 @@ int main() {
       token = strtok(NULL, " ");
 
       strcpy(maxIndString, token);
-      printf("[CLIENT] String: %s, ID: %d\n", recvString, maxIndString);
+      printf("[CLIENT] String: %s, ID: %s\n", recvString, maxIndString);
     }
 
     printf("[CLIENT] MaxIndString = %s\n", maxIndString);
