@@ -101,14 +101,14 @@ int main(int argc, char *argv[]) {
       // // strcpy(toSend, "");
       // strcpy(toSend, arr[i]);
       
-      printf("[SERVER] Sending %s\n", arr[i]);
+      // printf("[SERVER] Sending %s\n", arr[i]);
 
       if (send(clientfd, arr[i], sizeof(arr[i]) + 1, 0) < 0) {
         perror("Error while writing string to client socket");
         exit(1);
       }
 
-      printf("[SERVER] Sending %d\n", i);
+      // printf("[SERVER] Sending %d\n", i);
 
       if (send(clientfd, &i, sizeof(int), 0) < 0) {
         perror("Error while sending index to client\n");
