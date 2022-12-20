@@ -21,13 +21,12 @@ struct memRegion {
 };
 
 int main() {
-  struct memRegion* region;
+  // struct memRegion* region;
   struct timespec start;
   struct timespec end;
   
 
   int randInd = 0;
-  char highestInd[10];
 
   int shm;
   if ((shm = shm_open(SHM_PATH, O_CREAT | O_RDWR, 666)) < 0) {
@@ -40,9 +39,10 @@ int main() {
   //   exit(1);
   // }
 
-  region = mmap(NULL, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm, 0);
+  char* region = mmap(NULL, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm, 0);
 
-  char recvString[6];
+  char recvString[12];
+
   int maxInd;
   int startTime = clock_gettime(CLOCK_REALTIME, &start);
   while (1) {
@@ -55,23 +55,33 @@ int main() {
     // }
 
     for (int i=0; i<5; i++) {
-      sscanf(region -> toRecv, "%s %d", recvString, &maxInd);
-      region += sizeof(struct memRegion)+2;
+      strcpy(recvString, *region);
+      // sscanf(region -> toRecv, "%s %d", recvString, &maxInd);
+      region += strlen(recvString) + 1;
+
+      char maxIndString[5];
+
+      char* token = strtok(recvString, " ");
+      strtok(NULL, " ");
+
+      strcpy(maxIndString, token);
+
+      sprintf(region, "%s", maxIndString);
+      region += strlen(maxIndString)+1;
+
+      printf("[CLIENT] String: %s, ID: %d\n", recvString, maxInd);
     }
 
-    sprintf(region -> toSend, "%d", maxInd);
-    region += sizeof(struct memRegion)+2;
-
-    sleep(10);
-  
-
-    printf("[CLIENT] String: %s, ID: %d\n", recvString, maxInd);
-
-    if (maxInd == 49) {
+    if (!strcmp(maxIndString, "49")) {
       break;
     }
 
     randInd += 5;
+
+    strcpy(region, "x");
+    while (!strcmp(region, "x")) {
+      continue;
+    }
   }
 
   int endTime = clock_gettime(CLOCK_REALTIME, &end);
