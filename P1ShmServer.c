@@ -12,7 +12,7 @@
 #include <unistd.h>
 #include <time.h>
 
-#define SHM_PATH "/tmp/shm"
+#define SHM_PATH "shm"
 #define SIZE 1024
 
 // struct memRegion {
