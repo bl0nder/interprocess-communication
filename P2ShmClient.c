@@ -16,8 +16,8 @@
 #define SIZE 1024
 
 struct memRegion {
-    char toSend[6];
-    int ind;
+    char toSend[15];
+    char toRecv[15];
 };
 
 int main() {
@@ -55,15 +55,14 @@ int main() {
     // }
 
     for (int i=0; i<5; i++) {
-      sscanf(region -> toSend, "%s", recvString);
-      sscanf((char *)region -> ind, "%d", maxInd);
-      region += 5+4+1;
+      sscanf(region -> toRecv, "%s %d", recvString, &maxInd);
+      region += sizeof(struct memRegion)+2;
     }
 
-    sprintf((char *)region -> ind, "%d", maxInd);
-    region += 5+4+1;
+    sprintf(region -> toSend, "%d", maxInd);
+    region += sizeof(memRegion)+2;
 
-    sleep(2);
+    sleep(10);
   
 
     printf("[CLIENT] String: %s, ID: %d\n", recvString, maxInd);
