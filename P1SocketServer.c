@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
       char toSend[15];
       strcpy(toSend, "");
       strcat(toSend, arr[i]);
-      strcat(" ");
+      strcat(toSend, " ");
       strcat(toSend, sendInd);
 
       printf("[SERVER] Sending: %s\n", toSend);
