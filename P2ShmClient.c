@@ -12,7 +12,7 @@
 #include <unistd.h>
 #include <time.h>
 
-#define SHM_PATH "shm"
+#define SHM_PATH "/tmp/shm"
 #define SIZE 1024
 
 struct memRegion {
@@ -94,6 +94,7 @@ int main() {
   printf("[SERVER] Time taken to receive 50 acknowledgements: %lfs\n", runTime);
 
   munmap(region, SIZE);
+  shm_unlink(SHM_PATH);
   close(shm);
   
   return 0;
