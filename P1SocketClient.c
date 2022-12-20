@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
   char buffer[BUFFER_SIZE + 1];
   int bytes_read;
 
-  printf("Strings: ")
+  printf("Strings: ");
   for (int i=0; i<5; i++) {
     if ((bytes_read = read(sockfd, buffer, BUFFER_SIZE) > 0)) {
       buffer[bytes_read] = '\0';
