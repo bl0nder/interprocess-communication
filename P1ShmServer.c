@@ -73,7 +73,7 @@ int main() {
     }
 
     char tempMax[5];
-    sprintf(tempMax, "%d", randInd + 5)
+    sprintf(tempMax, "%d", randInd + 5);
 
     while (strcmp(*region, tempMax)) {
       continue;
@@ -84,7 +84,7 @@ int main() {
 
     // sscanf(region -> toRecv, "%d", &maxInd);
     char maxIndStr[5];
-    strcpy(*region);
+    strcpy(maxIndStr, *region);
 
     int maxInd = atoi((const char*) maxIndStr);
     printf("[SERVER] Maximum index received: %d\n", maxInd);
