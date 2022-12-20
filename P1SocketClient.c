@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     printf("Received string: %s\n", buffer);
     sleep(2);
 
-    strncpy(highestInd, buffer + 6, 15-6);
+    strcpy(highestInd, buffer);
   }
 
   
