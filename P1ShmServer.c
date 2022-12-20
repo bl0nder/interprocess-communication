@@ -12,7 +12,7 @@
 #include <unistd.h>
 #include <time.h>
 
-#define SHM_PATH "/tmp/OSShm"
+#define SHM_PATH "shm"
 
 struct memRegion {
     char toSend[6];
