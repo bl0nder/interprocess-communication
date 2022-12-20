@@ -63,15 +63,16 @@ int main() {
     region += 5+4+1+1;
 
     sleep(2);
+  
+
+    printf("[SERVER] Maximum index received: %d\n", maxInd);
+
+    if (maxInd == 49) {
+      break;
+    }
+
+    randInd += 5;
   }
-
-  printf("[SERVER] Maximum index received: %d\n", maxInd);
-
-  if (maxInd == 49) {
-    break;
-  }
-
-  randInd += 5;
 
   int endTime = clock_gettime(CLOCK_REALTIME, &end);
   double runTime = (end.tv_sec + 1.0e-9*end.tv_nsec - (start.tv_sec + 1.0e-9*start.tv_nsec));
