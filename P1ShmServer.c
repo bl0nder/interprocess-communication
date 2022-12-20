@@ -89,6 +89,7 @@ int main() {
     char* maxIndStr = (char*) region;
 
     region += strlen(maxIndStr) + 1;
+    //42
 
     int maxInd = atoi(maxIndStr);
     printf("[SERVER] Maximum index received: %d\n", maxInd);
