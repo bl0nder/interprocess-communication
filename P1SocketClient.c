@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     buffer[bytes_read] = '\0';
     strcpy(highestInd, buffer);
     printf("[CLIENT] Received string: %s\n", highestInd);
-    sleep(2);
+    // sleep(2);
   }
 
   
