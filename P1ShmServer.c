@@ -16,13 +16,13 @@
 
 struct memRegion {
     char toSend[6];
-    int ind;
+    char ind[5];
 };
 
 int main() {
-    struct memRegion* region;
-//   struct timespec start;
-//   struct timespec end;
+  struct memRegion* region;
+  struct timespec start;
+  struct timespec end;
 
   char* chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   char arr[50][6];
@@ -50,7 +50,7 @@ int main() {
 
   region = mmap(NULL, 10*sizeof(struct memRegion), PROT_READ | PROT_WRITE, MAP_SHARED, shm, 0);
   
-  //   int startTime = clock_gettime(CLOCK_REALTIME, &start);
+    int startTime = clock_gettime(CLOCK_REALTIME, &start);
   while (1) {
 
     for (int i=randInd; i<randInd+5; i++) {

@@ -21,8 +21,8 @@ struct memRegion {
 
 int main() {
     struct memRegion* region;
-//   struct timespec start;
-//   struct timespec end;
+  struct timespec start;
+  struct timespec end;
   
 
   int randInd = 0;
@@ -43,7 +43,7 @@ int main() {
 
   char recvString[6];
   int maxInd;
-  //   int startTime = clock_gettime(CLOCK_REALTIME, &start);
+  int startTime = clock_gettime(CLOCK_REALTIME, &start);
   while (1) {
 
     // for (int i=randInd; i<randInd+5; i++) {
