@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
       
       // printf("[SERVER] Sending %s\n", arr[i]);
 
-      if (send(clientfd, arr[i], sizeof(arr[i]) + 1, 0) < 0) {
+      if (send(clientfd, arr[i], strlen(arr[i]) + 1, 0) < 0) {
         perror("Error while writing string to client socket");
         exit(1);
       }
