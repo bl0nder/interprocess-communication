@@ -14,10 +14,10 @@
 
 int main() {
 
-  //Create fifo
-  if (mkfifo(FIFO_PATH, 666) < 0) {
-    perror("[CLIENT] Error is creating a FIFO\n");
-  }
+//   //Create fifo
+//   if (mkfifo(FIFO_PATH, 666) < 0) {
+//     perror("[CLIENT] Error is creating a FIFO\n");
+//   }
   
   char recvString[6];
   int ind;
@@ -41,6 +41,8 @@ int main() {
         perror("[CLIENT] Error in reading index from FIFO\n");
         exit(1);
       }
+
+      printf("[CLIENT] String: %s, Index: %d\n", recvString, ind);
     }
 
     close(fifo);
