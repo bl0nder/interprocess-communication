@@ -23,6 +23,9 @@ int main(int argc, char *argv[]) {
       }
   }
 
+  int randInd = (rand()%(30-0+1))+0;
+  char highestInd[10];
+
   // Create the socket
   int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
   if (sockfd < 0) {
@@ -55,39 +58,42 @@ int main(int argc, char *argv[]) {
     perror("accept");
     exit(EXIT_FAILURE);
   }
-
-  int randInd = (rand() % (68-0+1)) + 0;
-  char highestInd[10];
   
-  while(randInd <= 68) {
+  while(randInd<= 68) {
     for (int i=randInd; i<randInd+5; i++) {
 
       printf("[SERVER] Sending: %s, Ind: %d\n", arr[i], i);
 
-      if (write(clientfd, arr[i], 5) < 0) {
+      char sendInd[8];
+      sprintf(sendInd, "%d", i);
+      
+      char toSend[15];
+      strcat(toSend, arr[i]);
+      strcat(toSend, sendInd);
+
+      if (write(clientfd, toSend, 15) < 0) {
         perror("Error while writing string to client socket");
         exit(1);
       }
 
-      char sendInd[8];
-      sprintf(sendInd, "%d", i);
+      
 
-      if (write(clientfd, sendInd, 8) < 0) {
-        perror("Error while writing string index to client socket");
-        exit(1);
-      }
+      // if (write(clientfd, sendInd, 8) < 0) {
+      //   perror("Error while writing string index to client socket");
+      //   exit(1);
+      // }
 
       randInd++;
-
-      if (read(clientfd, highestInd, 10) < 0) {
-        perror("Error while trying to read from client socket");
-        exit(1);
-      }
-
-      printf("Client socket sent me this: %s", highestInd);
-      // sleep(2);
+      sleep(2);
     }
   }
+
+  if (read(clientfd, highestInd, 10) < 0) {
+    perror("Error while trying to read from client socket");
+    exit(1);
+  }
+
+  printf("Client socket sent me this: %s", highestInd);
 
   // Close the socket
   close(clientfd);

@@ -8,7 +8,6 @@
 
 #define SOCKET_PATH "/tmp/socket"
 #define BUFFER_SIZE 5
-
 int main(int argc, char *argv[]) {
   // Create the socket
   int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
@@ -37,11 +36,21 @@ int main(int argc, char *argv[]) {
   //   buffer[bytes_read] = '\0';
   //   printf("%s ", buffer);
   // }
+  
+  char highestInd[8];
 
   while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
     buffer[bytes_read] = '\0';
     printf("Received string: %s\n", buffer);
     sleep(2);
+
+    strncpy(highestInd, buffer + 6, 15-6);
+  }
+
+  
+  if (write(sockfd, highestInd, 8) < 0) {
+    perror("Error while trying to write to server\n");
+    exit(1);
   }
 
   // Check for read errors
