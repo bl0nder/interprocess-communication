@@ -60,7 +60,7 @@ int main() {
     }
 
     sprintf(region -> toSend, "%d", maxInd);
-    region += sizeof(memRegion)+2;
+    region += sizeof(struct memRegion)+2;
 
     sleep(10);
   
