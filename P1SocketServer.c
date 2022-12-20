@@ -23,6 +23,8 @@ int main(int argc, char *argv[]) {
       }
   }
 
+  printf("TESTING: %s\n", arr[5]);
+
   int randInd = (rand()%(30-0+1))+0;
   char highestInd[10];
 
