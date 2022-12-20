@@ -56,7 +56,7 @@ int main() {
 
     for (int i=randInd; i<randInd+5; i++) {
       sprintf(region -> toSend, "%s %d", arr[i], i);
-      region += 15 + 1;
+      region += sizeof(struct memRegion) + 2;
     }
 
     sleep(10);
