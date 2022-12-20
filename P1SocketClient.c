@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
       exit(1);
     }
 
-    if (ind == 61) {
+    if (ind == 49) {
       break;
     }
 
