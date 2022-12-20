@@ -70,6 +70,7 @@ int main() {
 
       sprintf(region, "%s", temp);
       printf("[SERVER] Sending %s\n", region);
+      printf("[SERVER] strlen temp = %d\n", strlen(temp));
       region += strlen(temp) + 1;
     }
 
