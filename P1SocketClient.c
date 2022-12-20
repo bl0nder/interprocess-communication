@@ -80,6 +80,10 @@ int main(int argc, char *argv[]) {
       exit(1);
     }
 
+    if (ind == 61) {
+      break;
+    }
+
   }
 
   // Close the socket
