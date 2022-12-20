@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
       }
 
       printf("Client socket sent me this: %s", highestInd);
-      sleep(2);
+      // sleep(2);
     }
   }
 
