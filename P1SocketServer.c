@@ -70,14 +70,15 @@ int main(int argc, char *argv[]) {
       char sendInd[8];
       sprintf(sendInd, "%d", i);
       
-      char toSend[15];
+      char toSend[25];
       strcpy(toSend, "");
       strcat(toSend, arr[i]);
-      strcat(toSend, " ");
+      strcat(toSend, "\t");
       strcat(toSend, sendInd);
 
       printf("[SERVER] Sending: %s\n", toSend);
-      if (write(clientfd, toSend, 15) < 0) {
+      
+      if (write(clientfd, toSend, 25) < 0) {
         perror("Error while writing string to client socket");
         exit(1);
       }
