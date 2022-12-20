@@ -42,7 +42,7 @@ int main() {
         exit(1);
       }
 
-      printf("[CLIENT] String: %s, Index: %d\n", recvString, ind);
+      printf("[CLIENT] String: %s, ID: %d\n", recvString, ind);
     }
 
     close(fifo);

@@ -9,10 +9,14 @@
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <time.h>
 
 #define FIFO_PATH "/tmp/OSFifo"
 
 int main() {
+
+  struct timespec start;
+  struct timespec end;
 
   char* chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   char arr[50][6];
@@ -32,6 +36,8 @@ int main() {
     perror("[SERVER] Error is creating a FIFO\n");
   }
 
+
+  int startTime = clock_gettime(CLOCK_REALTIME, &start);
   while (1) {
     //Open fifo in write mode so that server can send info to client
     int fifo;
@@ -76,5 +82,9 @@ int main() {
     randInd += 5;
 
   }
+  int endTime = clock_gettime(CLOCK_REALTIME, &end);
+  double runTime = (end.tv_sec + 1.0e-9*end.tv_nsec - (start.tv_sec + 1.0e-9*start.tv_nsec));
+
+  printf("[SERVER] Time taken to receive 50 acknowledgements: %lfs\n", runTime);
   return 0;
 }
