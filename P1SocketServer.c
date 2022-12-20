@@ -73,9 +73,10 @@ int main(int argc, char *argv[]) {
       char toSend[15];
       strcpy(toSend, "");
       strcat(toSend, arr[i]);
+      strcat(" ");
       strcat(toSend, sendInd);
 
-      printf("[SERVER] Sending: %s, Ind: %d\n", toSend, i);
+      printf("[SERVER] Sending: %s\n", toSend);
       if (write(clientfd, toSend, 15) < 0) {
         perror("Error while writing string to client socket");
         exit(1);
