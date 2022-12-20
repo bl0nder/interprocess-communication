@@ -55,6 +55,7 @@ int main() {
     // }
     char maxIndString[5];
 
+
     for (int i=0; i<5; i++) {
       // strcpy(recvString, region);
 
@@ -69,13 +70,13 @@ int main() {
       token = strtok(NULL, " ");
 
       strcpy(maxIndString, token);
+      printf("[CLIENT] String: %s, ID: %d\n", recvString, maxInd);
     }
 
     printf("[CLIENT] MaxIndString = %s\n", maxIndString);
     sprintf(region, "%s", maxIndString);
     region += strlen(maxIndString)+1;
 
-    printf("[CLIENT] String: %s, ID: %d\n", recvString, maxInd);
 
     if (!strcmp(maxIndString, "49")) {
       break;
