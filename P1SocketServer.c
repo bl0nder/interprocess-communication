@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
   }
   
 
-  int randInd = (rand()%(30-0+1))+0;
+  int randInd = 0;
   char highestInd[10];
 
   // Create the socket
@@ -97,13 +97,13 @@ int main(int argc, char *argv[]) {
     
     for (int i=randInd; i<randInd + 5; i++) {
     
-      char toSend[25];
-      strcpy(toSend, "");
-      strcat(toSend, arr[i]);
+      // char toSend[25];
+      // // strcpy(toSend, "");
+      // strcpy(toSend, arr[i]);
       
-      printf("[SERVER] Sending %s\n", toSend);
+      printf("[SERVER] Sending %s\n", arr[i]);
 
-      if (send(clientfd, toSend, sizeof(toSend) + 1, 0) < 0) {
+      if (send(clientfd, arr[i], sizeof(arr[i]) + 1, 0) < 0) {
         perror("Error while writing string to client socket");
         exit(1);
       }

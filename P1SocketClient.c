@@ -58,13 +58,13 @@ int main(int argc, char *argv[]) {
   //   exit(EXIT_FAILURE);
   // }
 
-  char recvStr[25];
+  char recvStr[6];
   int ind;
   
   while (1) {
 
     for (int i=0; i<5; i++) {
-      if (recv(sockfd, recvStr, sizeof(recvStr) + 1, 0) < 0) {
+      if (recv(sockfd, recvStr, 6, 0) < 0) {
         perror("Error in receiving string from server\n");
         exit(1);
       }
