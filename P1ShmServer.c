@@ -85,8 +85,8 @@ int main() {
 
 
     // sscanf(region -> toRecv, "%d", &maxInd);
-    char maxIndStr[5];
-    strcpy(maxIndStr, region);
+    // char maxIndStr[5];
+    char* maxIndStr = (char*) region;
 
     region += strlen(maxIndStr) + 1;
 
