@@ -29,11 +29,6 @@ int main() {
   }
 
   // Read and print the strings sent by the server
-  char buffer[BUFFER_SIZE + 1];
-  int bytes_read;
-
-  
-  
   char highestInd[15];
   char recvStr[6];
   int ind;
