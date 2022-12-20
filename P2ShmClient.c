@@ -84,7 +84,7 @@ int main() {
 
     randInd += 5;
 
-    strcpy(region, "x");
+    sprintf(region, "%s", "x");
     while (!strcmp(region, "x")) {
       continue;
     }
