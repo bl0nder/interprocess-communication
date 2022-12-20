@@ -73,8 +73,9 @@ int main(int argc, char *argv[]) {
       char toSend[25];
       strcpy(toSend, "");
       strcat(toSend, arr[i]);
-      strcat(toSend, "\t");
+      strcat(toSend, "~");
       strcat(toSend, sendInd);
+      strcat(toSend, "\0");
 
       printf("[SERVER] Sending: %s\n", toSend);
       
