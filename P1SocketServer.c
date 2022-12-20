@@ -61,6 +61,9 @@ int main(int argc, char *argv[]) {
   
   while(randInd <= 68) {
     for (int i=randInd; i<randInd+5; i++) {
+
+      printf("[SERVER] Sending: %s, Ind: %d\n", arr[i], i);
+
       if (write(clientfd, arr[i], 5) < 0) {
         perror("Error while writing string to client socket");
         exit(1);
