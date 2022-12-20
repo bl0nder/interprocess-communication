@@ -17,7 +17,7 @@
 
 struct memRegion {
     char toSend[6];
-    char ind[5];
+    int ind;
 };
 
 int main() {
@@ -56,9 +56,9 @@ int main() {
 
     for (int i=randInd; i<randInd+5; i++) {
         sprintf(region -> toSend, "%s", arr[i]);
-        sprintf(region -> ind, "%d", i);
+        sprintf((char *) region -> ind, "%d", i);
 
-        region += 5 + 4 + 1+ 1;
+        region += 5 + 4 + 1;
     }
 
     sleep(5);
@@ -67,7 +67,7 @@ int main() {
 
     //Now open fifo in read-only mode to read largest index sent by client
 
-    sscanf(region -> ind, "%d", &maxInd);
+    sscanf((char *)region -> ind, "%d", &maxInd);
     printf("[SERVER] Maximum index received: %d\n", maxInd);
 
     if (maxInd == 49) {
