@@ -86,7 +86,7 @@ int main() {
     char maxIndStr[5];
     strcpy(maxIndStr, *region);
 
-    int maxInd = atoi((const char*) maxIndStr);
+    int maxInd = atoi(maxIndStr);
     printf("[SERVER] Maximum index received: %d\n", maxInd);
 
     if (maxInd == 49) {
