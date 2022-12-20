@@ -7,7 +7,7 @@
 #include <sys/un.h>
 
 #define SOCKET_PATH "/tmp/socket"
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 15
 int main(int argc, char *argv[]) {
   // Create the socket
   int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
