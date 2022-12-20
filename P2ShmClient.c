@@ -55,11 +55,11 @@ int main() {
 
     for (int i=0; i<5; i++) {
       sscanf(region -> toSend, "%s", recvString);
-      sscanf(region -> ind, "%s", maxInd);
+      sscanf(region -> ind, "%d", maxInd);
       region += 5+4+1+1;
     }
 
-    sprintf(region -> ind, "%s", maxInd);
+    sprintf(region -> ind, "%d", maxInd);
     region += 5+4+1+1;
 
     sleep(2);
