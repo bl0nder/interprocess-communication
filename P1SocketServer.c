@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
       // }
 
       randInd++;
-      sleep(2);
+      // sleep(2);
     }
   }
 
