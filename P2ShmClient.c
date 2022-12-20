@@ -39,7 +39,7 @@ int main() {
   //   exit(1);
   // }
 
-  region = mmap(NULL, 10*sizeof(struct memRegion), PROT_READ | PROT_WRITE, MAP_SHARED, shm, 0);
+  region = mmap(NULL, 40*sizeof(struct memRegion), PROT_READ | PROT_WRITE, MAP_SHARED, shm, 0);
 
   char recvString[6];
   int maxInd;
@@ -79,7 +79,7 @@ int main() {
 
   printf("[SERVER] Time taken to receive 50 acknowledgements: %lfs\n", runTime);
 
-  munmap(region, 10*sizeof(struct memRegion));
+  munmap(region, 40*sizeof(struct memRegion));
   close(shm);
   
   return 0;

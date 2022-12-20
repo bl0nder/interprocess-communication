@@ -43,12 +43,12 @@ int main() {
     exit(1);
   }
 
-  if (ftruncate(shm, 10*sizeof(struct memRegion)) < 0) {
+  if (ftruncate(shm, 40*sizeof(struct memRegion)) < 0) {
     perror ("[SERVER] Error in truncating shared memory region\n");
     exit(1);
   }
 
-  region = mmap(NULL, 10*sizeof(struct memRegion), PROT_READ | PROT_WRITE, MAP_SHARED, shm, 0);
+  region = mmap(NULL, 40*sizeof(struct memRegion), PROT_READ | PROT_WRITE, MAP_SHARED, shm, 0);
   
     int startTime = clock_gettime(CLOCK_REALTIME, &start);
   while (1) {
@@ -81,7 +81,7 @@ int main() {
 
   printf("[SERVER] Time taken to receive 50 acknowledgements: %lfs\n", runTime);
 
-  munmap(region, 10*sizeof(struct memRegion));
+  munmap(region, 40*sizeof(struct memRegion));
   close(shm);
   shm_unlink(SHM_PATH);
   return 0;
