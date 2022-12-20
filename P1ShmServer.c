@@ -60,14 +60,13 @@ int main() {
         region += 5 + 4 + 1+ 1;
     }
 
-    sleep(2);
+    sleep(5);
 
     int maxInd;
 
     //Now open fifo in read-only mode to read largest index sent by client
 
     sscanf(region -> ind, "%s", &maxInd);
-
     printf("[SERVER] Maximum index received: %d\n", maxInd);
 
     if (maxInd == 49) {
