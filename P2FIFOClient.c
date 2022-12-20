@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 #define FIFO_PATH "/tmp/OSFifo"
 

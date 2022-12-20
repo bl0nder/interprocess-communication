@@ -5,7 +5,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/un.h>
-#include <fcntl.h>
+
 
 #define SOCKET_PATH "/tmp/OSSocket"
 
