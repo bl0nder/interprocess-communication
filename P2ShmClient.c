@@ -70,6 +70,8 @@ int main() {
 
       strcpy(maxIndString, token);
 
+      printf("[CLIENT] MaxIndString = %s\n", maxIndString);
+
       sprintf(region, "%s", maxIndString);
       region += strlen(maxIndString)+1;
 
