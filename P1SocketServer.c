@@ -8,10 +8,9 @@
 #include <string.h>
 #include <unistd.h>
 
-#define SOCKET_PATH "/tmp/socket"
-#define BUFFER_SIZE 5
+#define SOCKET_PATH "/tmp/OSSocket"
 
-int main(int argc, char *argv[]) {
+int main() {
 
   char* chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   char arr[50][6];

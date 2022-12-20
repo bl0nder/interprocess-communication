@@ -6,9 +6,9 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
-#define SOCKET_PATH "/tmp/socket"
-#define BUFFER_SIZE 8
-int main(int argc, char *argv[]) {
+#define SOCKET_PATH "/tmp/OSSocket"
+
+int main() {
   // Create the socket
   int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
   if (sockfd < 0) {
