@@ -90,10 +90,10 @@ int main(int argc, char *argv[]) {
   //     // sleep(2);
   //   }
   // }
+  int maxInd;
+  
   while (1) {
-    
 
-    int maxInd;
     
     for (int i=randInd; i<randInd + 5; i++) {
     
