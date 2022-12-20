@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
   //   printf("%s ", buffer);
   // }
   
-  char highestInd[8];
+  char highestInd[15];
 
   while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
     buffer[bytes_read] = '\0';
