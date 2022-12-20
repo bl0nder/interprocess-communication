@@ -55,9 +55,9 @@ int main() {
 
     for (int i=randInd; i<randInd+5; i++) {
         sprintf(region -> toSend, "%s", arr[i]);
-        sprintf(region -> ind, "%d", i);
+        sprintf(region -> ind, "%s", i);
 
-        region += 5 + 4 + 1;
+        region += 5 + 4 + 1+ 1;
     }
 
     sleep(2);
@@ -66,7 +66,7 @@ int main() {
 
     //Now open fifo in read-only mode to read largest index sent by client
 
-    sscanf(region, "%d", &maxInd);
+    sscanf(region -> ind, "%s", &maxInd);
 
     printf("[SERVER] Maximum index received: %d\n", maxInd);
 

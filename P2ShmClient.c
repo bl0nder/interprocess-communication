@@ -16,7 +16,7 @@
 
 struct memRegion {
     char toSend[6];
-    int ind;
+    char ind[5];
 };
 
 int main() {
@@ -55,12 +55,12 @@ int main() {
 
     for (int i=0; i<5; i++) {
       sscanf(region -> toSend, "%s", recvString);
-      sscanf(region -> ind, "%d", maxInd);
-      region += 5+4+1;
+      sscanf(region -> ind, "%s", maxInd);
+      region += 5+4+1+1;
     }
 
-    sprintf(region -> ind, "%d", maxInd);
-    region += 5+4+1;
+    sprintf(region -> ind, "%s", maxInd);
+    region += 5+4+1+1;
 
     sleep(2);
   }
