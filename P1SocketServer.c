@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
       arr[i][5] = '\0';
   }
 
-  printf("TESTING: %s\n", arr[48]);
+  printf("TESTING: %s\n", arr[20]);
   
 
   int randInd = (rand()%(30-0+1))+0;
