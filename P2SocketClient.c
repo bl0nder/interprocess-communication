@@ -46,6 +46,8 @@ int main() {
         perror("Error in receiving index from server\n");
         exit(1);
       }
+
+      printf("[CLIENT] String: %s, ID: %d\n", recvString, ind);
     }
 
     if (send(sockfd, &ind, sizeof(int), 0) < 0) {

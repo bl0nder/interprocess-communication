@@ -7,10 +7,15 @@
 #include <sys/un.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
+
 
 #define SOCKET_PATH "/tmp/OSSocket"
 
 int main() {
+
+  struct timespec start;
+  struct timespec end;
 
   char* chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   char arr[50][6];
@@ -61,9 +66,8 @@ int main() {
   
   int maxInd;
   
+  int startTime = clock_gettime(CLOCK_REALTIME, &start);
   while (1) {
-
-    
     for (int i=randInd; i<randInd + 5; i++) {
 
       if (send(clientfd, arr[i], strlen(arr[i]) + 1, 0) < 0) {
@@ -90,6 +94,11 @@ int main() {
     }
     randInd += 5;
   }
+
+  int endTime = clock_gettime(CLOCK_REALTIME, &end);
+  double runTime = (end.tv_sec + 1.0e-9*end.tv_nsec - (start.tv_sec + 1.0e-9*start.tv_nsec));
+
+  printf("[SERVER] Time taken to receive 50 acknowledgements: %lfs\n", runTime);
 
   // Close the socket
   close(clientfd);
