@@ -125,8 +125,6 @@ int main(int argc, char *argv[]) {
     if (maxInd==49) {
       break;
     }
-
-    i++;
     randInd += 5;
   }
 
