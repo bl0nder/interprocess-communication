@@ -91,13 +91,15 @@ int main(int argc, char *argv[]) {
   //   }
   // }
   while (1) {
+    
+
+    int maxInd;
+    
     for (int i=randInd; i<randInd + 5; i++) {
     
       char toSend[25];
       strcpy(toSend, "");
       strcat(toSend, arr[i]);
-
-      int maxInd;
       
       printf("[SERVER] Sending %s\n", toSend);
 
