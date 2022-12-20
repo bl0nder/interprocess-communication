@@ -59,35 +59,7 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
   
-  // while(randInd<= 57) {
-  //   for (int i=randInd; i<randInd+5; i++) {
-
-
-  //     char sendInd[8];
-  //     sprintf(sendInd, "%d", i);
-      
-  //     char toSend[25];
-  //     strcpy(toSend, "");
-  //     strcat(toSend, arr[i]);
-
-  //     printf("[SERVER] Sending: %s\n", toSend);
-      
-  //     if (send(clientfd, toSend, sizeof(toSend) + 1) < 0) {
-  //       perror("Error while writing string to client socket");
-  //       exit(1);
-  //     }
-
-      
-
-  //     // if (write(clientfd, sendInd, 8) < 0) {
-  //     //   perror("Error while writing string index to client socket");
-  //     //   exit(1);
-  //     // }
-
-  //     randInd++;
-  //     // sleep(2);
-  //   }
-  // }
+  
   int maxInd;
   
   while (1) {

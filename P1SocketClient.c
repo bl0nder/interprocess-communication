@@ -32,32 +32,9 @@ int main(int argc, char *argv[]) {
   char buffer[BUFFER_SIZE + 1];
   int bytes_read;
 
-  // while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
-  //   buffer[bytes_read] = '\0';
-  //   printf("%s ", buffer);
-  // }
+  
   
   char highestInd[15];
-
-  // while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
-  //   buffer[bytes_read] = '\0';
-  //   strcpy(highestInd, buffer);
-  //   printf("[CLIENT] Received string: %s\n", highestInd);
-  //   // sleep(2);
-  // }
-
-  
-  // if (write(sockfd, highestInd, 8) < 0) {
-  //   perror("Error while trying to write to server\n");
-  //   exit(1);
-  // }
-
-  // // Check for read errors
-  // if (bytes_read < 0) {
-  //   perror("read");
-  //   exit(EXIT_FAILURE);
-  // }
-
   char recvStr[6];
   int ind;
   
