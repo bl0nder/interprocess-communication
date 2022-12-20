@@ -8,8 +8,6 @@
 #include <string.h>
 #include <unistd.h>
 
-
-
 #define SOCKET_PATH "/tmp/socket"
 #define BUFFER_SIZE 5
 
@@ -96,19 +94,11 @@ int main(int argc, char *argv[]) {
 
     
     for (int i=randInd; i<randInd + 5; i++) {
-    
-      // char toSend[25];
-      // // strcpy(toSend, "");
-      // strcpy(toSend, arr[i]);
-      
-      // printf("[SERVER] Sending %s\n", arr[i]);
 
       if (send(clientfd, arr[i], strlen(arr[i]) + 1, 0) < 0) {
         perror("Error while writing string to client socket");
         exit(1);
       }
-
-      // printf("[SERVER] Sending %d\n", i);
 
       if (send(clientfd, &i, sizeof(int), 0) < 0) {
         perror("Error while sending index to client\n");
