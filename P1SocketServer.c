@@ -66,7 +66,8 @@ int main(int argc, char *argv[]) {
         exit(1);
       }
 
-      char sendInd[8] = itoa(i);
+      char sendInd[8];
+      itoa(i, sendInd);
 
       if (write(clientfd, sendInd, 8) < 0) {
         perror("Error while writing string index to client socket");
