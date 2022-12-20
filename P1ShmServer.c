@@ -38,7 +38,7 @@ int main() {
   char highestInd[10];
 
   int shm;
-  if ((shm = shm_open(SHM_PATH, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR)) < 0) {
+  if ((shm = shm_open(SHM_PATH, O_CREAT | O_RDWR, 666)) < 0) {
     perror ("[SERVER] Error in creating shared memory\n");
     exit(1);
   }
