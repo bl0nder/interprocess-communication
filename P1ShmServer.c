@@ -69,6 +69,7 @@ int main() {
       strcat(temp, "\0");
 
       sprintf(region, "%s", temp);
+      printf("[SERVER] Sending %s\n", region);
       region += strlen(temp) + 1;
     }
 
