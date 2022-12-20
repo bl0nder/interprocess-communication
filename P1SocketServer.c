@@ -67,6 +67,7 @@ int main(int argc, char *argv[]) {
       sprintf(sendInd, "%d", i);
       
       char toSend[15];
+      strcpy(toSend, "");
       strcat(toSend, arr[i]);
       strcat(toSend, sendInd);
 

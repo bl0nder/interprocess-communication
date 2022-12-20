@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 
   while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
     buffer[bytes_read] = '\0';
-    printf("Received string: %s\n", buffer);
+    printf("[CLIENT] Received string: %s\n", buffer);
     sleep(2);
 
     strcpy(highestInd, buffer);
