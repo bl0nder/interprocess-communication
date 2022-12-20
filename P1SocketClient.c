@@ -34,9 +34,11 @@ int main(int argc, char *argv[]) {
   int bytes_read;
 
   printf("Strings: ");
-  while ((bytes_read = read(sockfd, buffer, BUFFER_SIZE) > 0)) {
-    buffer[bytes_read] = '\0';
-    printf("%s ", buffer);
+  for (int i=0; i<5; i++) {
+    if ((bytes_read = read(sockfd, buffer, BUFFER_SIZE)) > 0) {
+      buffer[bytes_read] = '\0';
+      printf("%s ", buffer);
+    }
   }
 
   printf("\n");
