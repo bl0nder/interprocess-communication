@@ -53,13 +53,12 @@ int main() {
 
     //     region += 5 + 4 + 1;
     // }
+    char maxIndString[5];
 
     for (int i=0; i<5; i++) {
-      strcpy(recvString, *region);
+      strcpy(recvString, region);
       // sscanf(region -> toRecv, "%s %d", recvString, &maxInd);
       region += strlen(recvString) + 1;
-
-      char maxIndString[5];
 
       char* token = strtok(recvString, " ");
       strtok(NULL, " ");
