@@ -22,7 +22,7 @@
 
 int main() {
   // struct memRegion* region;  
-
+  shm_unlink(SHM_PATH);
   char toSend[15];
 
   struct timespec start;
