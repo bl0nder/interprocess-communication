@@ -21,11 +21,6 @@ struct memRegion {
 };
 
 int main() {
-  // struct memRegion* region;
-  struct timespec start;
-  struct timespec end;
-  
-
   int randInd = 0;
 
   int shm;
@@ -44,7 +39,6 @@ int main() {
   // char recvString[12];
 
   int maxInd;
-  int startTime = clock_gettime(CLOCK_REALTIME, &start);
   while (1) {
 
     // for (int i=randInd; i<randInd+5; i++) {
@@ -89,11 +83,6 @@ int main() {
 
     sleep(1);
   }
-
-  int endTime = clock_gettime(CLOCK_REALTIME, &end);
-  double runTime = (end.tv_sec + 1.0e-9*end.tv_nsec - (start.tv_sec + 1.0e-9*start.tv_nsec));
-
-  printf("[SERVER] Time taken to receive 50 acknowledgements: %lfs\n", runTime);
 
   munmap(region, SIZE);
   shm_unlink(SHM_PATH);
