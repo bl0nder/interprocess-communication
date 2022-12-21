@@ -21,7 +21,6 @@ struct memRegion {
 };
 
 int main() {
-  shm_unlink(SHM_PATH);
   int randInd = 0;
 
   int shm;
