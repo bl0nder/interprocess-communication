@@ -87,7 +87,7 @@ int main() {
     // sprintf(region, "%s", "x");
     // while (!strcmp((char*) region, "x"));
 
-    // sleep(1);
+    sleep(1);
   }
 
   int endTime = clock_gettime(CLOCK_REALTIME, &end);
