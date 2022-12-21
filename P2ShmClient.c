@@ -85,8 +85,8 @@ int main() {
   }
 
   munmap(region, SIZE);
-  shm_unlink(SHM_PATH);
   close(shm);
+  shm_unlink(SHM_PATH);
   
   return 0;
 }
